@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 配置参数
-APP_NAME="AutoGo图色助手"
+APP_NAME="luatouch图色助手"
 ICON_PATH="./build/logo.png"
 ICON_ICNS="./build/logo.icns"
 BUILD_DIR="./build"
@@ -135,7 +135,7 @@ echo "================================"
 echo "创建 Intel Mac DMG..."
 echo "================================"
 
-INTEL_DMG_TEMPLATE="$BUILD_DIR/AutoGo图色助手_MacOs_Intel_tmp.dmg"
+INTEL_DMG_TEMPLATE="$BUILD_DIR/luatouch图色助手_MacOs_Intel_tmp.dmg"
 INTEL_DMG_OUTPUT="$BUILD_DIR/${APP_NAME}_Intel.dmg"
 
 if [ -f "$INTEL_DMG_TEMPLATE" ]; then

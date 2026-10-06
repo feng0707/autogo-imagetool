@@ -232,7 +232,7 @@ func openPaintWindow(parentWindow fyne.Window) {
 		return
 	}
 	a := fyne.CurrentApp()
-	w := a.NewWindow("AutoGo 裁剪画笔涂抹（异形图）")
+	w := a.NewWindow("luatouch 裁剪画笔涂抹（异形图）")
 	paintWin = w
 	w.SetOnClosed(func() { paintWin = nil })
 	w.Resize(fyne.NewSize(1200, 700))

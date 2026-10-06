@@ -29,7 +29,7 @@ func openSmartPickWindow(parentWindow fyne.Window) {
 		return
 	}
 	a := fyne.CurrentApp()
-	w := a.NewWindow("AutoGo 智能取色")
+	w := a.NewWindow("luatouch 智能取色")
 	smartPickWin = w
 	w.SetOnClosed(func() { smartPickWin = nil })
 	w.Resize(fyne.NewSize(1200, 700))

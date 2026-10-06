@@ -3,10 +3,10 @@
   <assemblyIdentity
     version="1.0.0.0"
     processorArchitecture="amd64"
-    name="AutoGo图色助手"
+    name="luatouch图色助手"
     type="win32"
   />
-  <description>AutoGo Image Color Assistant</description>
+  <description>luatouch Image Color Assistant</description>
   <dependency>
     <dependentAssembly>
       <assemblyIdentity

@@ -28,7 +28,7 @@ import (
 )
 
 // ★ 版本号（窗口标题展示；与 FyneApp.toml / fyne_metadata_init.go 保持同步）
-const appVersion = "v1.0.5"
+const appVersion = "v1.0.6"
 
 func main() {
 	// 创建应用
@@ -41,7 +41,7 @@ func main() {
 	a.Settings().SetTheme(newMyTheme())
 
 	// 创建窗口
-	w := a.NewWindow("AutoGo图色助手 " + appVersion)
+	w := a.NewWindow("luatouch图色助手 " + appVersion)
 	w.Resize(fyne.NewSize(1540, 850))
 	w.CenterOnScreen()
 
@@ -50,7 +50,7 @@ func main() {
 	screenshotSaveDir = loadToolPaths().ScreenshotDir // ★ 截图保存目录持久化（tool_paths.json）
 	screenshotURLSelect = widget.NewSelect(loadScreenshotURLs(), func(value string) {
 		if value != "" {
-			w.SetTitle("AutoGo图色助手 " + appVersion + "(" + value + ")")
+			w.SetTitle("luatouch图色助手 " + appVersion + "(" + value + ")")
 		}
 	})
 	screenshotURLSelect.PlaceHolder = "选择截图地址"
@@ -104,7 +104,7 @@ func main() {
 		screenshotURLSelect.Refresh()
 		saveScreenshotURLs(opts)
 		// 标题恢复默认
-		w.SetTitle("AutoGo图色助手 " + appVersion)
+		w.SetTitle("luatouch图色助手 " + appVersion)
 	})
 	removeURLBtn.Importance = widget.LowImportance
 
@@ -836,6 +836,14 @@ func main() {
 		if imageViewer == nil || imageViewer.image == nil {
 			showFindMultiResultDialog(w, "请先加载/截图图片后再二值化")
 			return
+		}
+
+		// ⭐ 已处于二值化状态时先恢复原图，避免把黑白图当原图二次二值化导致全图变黑
+		if imageViewer.isBinarized && imageViewer.originalImage != nil {
+			imageViewer.image = imageViewer.originalImage
+			imageViewer.displayImage.Image = imageViewer.originalImage
+			imageViewer.isBinarized = false
+			imageViewer.Refresh()
 		}
 
 		code := ""

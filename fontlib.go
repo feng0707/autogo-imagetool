@@ -817,7 +817,7 @@ func openFontLibWindow(parentWindow fyne.Window) {
 		return
 	}
 	a := fyne.CurrentApp()
-	w := a.NewWindow("AutoGo 字库制作")
+	w := a.NewWindow("luatouch 字库制作")
 	fontLibWin = w
 	w.SetOnClosed(func() { fontLibWin = nil })
 	w.Resize(fyne.NewSize(1200, 700))

@@ -7,10 +7,10 @@ import (
 
 func init() {
 	app.SetMetadata(fyne.AppMetadata{
-		ID: "com.autogo.imagetool",
-		Name: "AutoGo图色助手",
-		Version: "1.0.5",
-		Build:   44,
+		ID: "com.luatuoch.imagetool",
+		Name: "luatouch图色助手",
+		Version: "1.0.6",
+		Build:   45,
 		Icon: &fyne.StaticResource{
 	StaticName: "logo.png",
 	StaticContent: []byte{
