@@ -10,3 +10,7 @@ cap.dex
 .idea/
 .lingma/
 .workbuddy/
+
+# Windows 专属构建/运行时资源（mac 链接器不认 .syso；dlst 是 OCR 引擎的 Windows DLL）
+*.syso
+dlst/
