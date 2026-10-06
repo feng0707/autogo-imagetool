@@ -2,6 +2,7 @@ name: mac-build
 
 # mac 版图色助手：Windows 上无法交叉编译 Fyne 的 macOS 目标（需要 Apple 工具链），
 # 所以用 GitHub 的 macOS 机器出包。产物在 run 页面的 Artifacts 下载。
+# 只出 Apple Silicon (arm64) 版本，Intel 老机器不再构建。
 # 禁用说明：mac 版里 微信OCR(wxocr) 与 PaddleOCR(paddle) 已用 build tag 禁用（见 *_other.go 桩）。
 
 on:
@@ -11,13 +12,7 @@ on:
 
 jobs:
   build:
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - { os: macos-14, arch: arm64 }   # Apple Silicon
-          - { os: macos-13, arch: amd64 }   # Intel
-    runs-on: ${{ matrix.os }}
+    runs-on: macos-14   # Apple Silicon
     steps:
       - uses: actions/checkout@v4
 
@@ -52,11 +47,11 @@ jobs:
           mkdir -p "AutoGoTuse.app/Contents/Resources"
           cp build/logo.icns "AutoGoTuse.app/Contents/Resources/logo.icns"
           chmod +x "AutoGoTuse.app/Contents/MacOS/AutoGoTuse"
-          zip -r -y -q "AutoGoTuSe-mac-${{ matrix.arch }}.zip" AutoGoTuse.app
+          zip -r -y -q "AutoGoTuSe-mac-arm64.zip" AutoGoTuse.app
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: AutoGoTuSe-mac-${{ matrix.arch }}
-          path: AutoGoTuSe-mac-${{ matrix.arch }}.zip
+          name: AutoGoTuSe-mac-arm64
+          path: AutoGoTuSe-mac-arm64.zip
           retention-days: 30
