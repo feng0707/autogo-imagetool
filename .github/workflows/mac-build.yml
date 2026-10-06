@@ -1,0 +1,62 @@
+name: mac-build
+
+# mac 版图色助手：Windows 上无法交叉编译 Fyne 的 macOS 目标（需要 Apple 工具链），
+# 所以用 GitHub 的 macOS 机器出包。产物在 run 页面的 Artifacts 下载。
+# 禁用说明：mac 版里 微信OCR(wxocr) 与 PaddleOCR(paddle) 已用 build tag 禁用（见 *_other.go 桩）。
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [master, main]
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: macos-14, arch: arm64 }   # Apple Silicon
+          - { os: macos-13, arch: amd64 }   # Intel
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.24'
+
+      - name: Build
+        run: |
+          cd "${GITHUB_WORKSPACE}"
+          go build -ldflags "-s -w" -o "AutoGoTuse.app/Contents/MacOS/AutoGoTuse" .
+
+      - name: Bundle .app
+        run: |
+          cat > "AutoGoTuse.app/Contents/Info.plist" <<'PLIST'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>CFBundleName</key><string>AutoGo图色助手</string>
+            <key>CFBundleDisplayName</key><string>AutoGo图色助手</string>
+            <key>CFBundleIdentifier</key><string>com.autogo.imagetool</string>
+            <key>CFBundleExecutable</key><string>AutoGoTuse</string>
+            <key>CFBundleIconFile</key><string>logo</string>
+            <key>CFBundlePackageType</key><string>APPL</string>
+            <key>CFBundleShortVersionString</key><string>1.0.5</string>
+            <key>LSMinimumSystemVersion</key><string>11.0</string>
+            <key>NSHighResolutionCapable</key><true/>
+          </dict>
+          </plist>
+          PLIST
+          mkdir -p "AutoGoTuse.app/Contents/Resources"
+          cp build/logo.icns "AutoGoTuse.app/Contents/Resources/logo.icns"
+          chmod +x "AutoGoTuse.app/Contents/MacOS/AutoGoTuse"
+          zip -r -y -q "AutoGoTuSe-mac-${{ matrix.arch }}.zip" AutoGoTuse.app
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: AutoGoTuSe-mac-${{ matrix.arch }}
+          path: AutoGoTuSe-mac-${{ matrix.arch }}.zip
+          retention-days: 30

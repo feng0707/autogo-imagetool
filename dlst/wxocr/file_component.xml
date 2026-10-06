@@ -1,0 +1,18 @@
+<file_component checkvalue="D2F33235C083454EF0DAB70FB9B6B827" signature="MGYCMQCdpFhsGSNyvkAfm7QJ5vcQiZSmdOox4+cAH1KcCqXutMd34Zuh27gQ6axCk70A/3wCMQDLL30jYayhuNVlZHj2i07ECZyoIlrq0dEz8zPQjkTGFheE0HuF//j/4M08macR+KM=">
+	<filters>
+		<filter appClientId="UniWeChatWin" appClientVerMin="0xF2512001" sdkMin="240401" runtimeAbis="x64" deviceAbis="x64" version="8092" /> 
+	</filters>
+	<file md5="b55e7a03bb0dfcfd8607cf361bc89e5e" length="54258">charset_zh13562.txt</file>
+	<file md5="3c8f11a91f4775ce8c5a21ecb382e1ae" length="45388">DeepSR_REPSR_R_M4C16_Flip_ep24.xnet</file>
+	<file md5="bec5b066810b8956d101f191d144a3c3" length="1604697">FPMMFG1V1.2.0.26.xnet</file>
+	<file md5="c07dca5a1c92e69a38e93312f6211edc" length="6952285">FPMMFG2V1.3.1.26.xnet</file>
+	<file md5="082dc2efd2c33761dfbf7974c18e1fdb" length="2937632">paragraph_det_fp16_v2.xnet</file>
+	<file md5="1b9175b493006dc2c3b6604910facd58" length="5351702">PrivacyDetectV8.0.26.xnet</file>
+	<file md5="2b9f9dc04098c93dd13a50e235c309a8" length="413819">QBarDetV1.7.0.26.xnet</file>
+	<file md5="ff8305fcb1c7dba3118555c7e53d37a2" length="224449">QBarSegV1.1.0.26.xnet</file>
+	<file md5="d1b90d339ae33eed5f5a8b05671d1c8d" length="19919">sohu_simp.txt</file>
+	<file md5="5508d2a18eedce532093ca81a5026a8c" length="1447764">text_det_fp16_v2.xnet</file>
+	<file md5="1bec5f5f7afff0df13c6e4fa7e0f7942" length="8354384">text_rec_zh13562_fp16_v2.xnet</file>
+	<file md5="b9631a0cc85dc32d465f92fce224567d" length="24447536">wxocr.dll</file>
+	<file md5="9c16d991c79c6330e655aa29ea623492" length="3">x64.config</file>
+</file_component>

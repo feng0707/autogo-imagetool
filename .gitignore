@@ -1,0 +1,12 @@
+# 构建产物 / 临时文件（mac CI 只需源码与 fyne-master、build 图标）
+*.exe
+build_err.txt
+build_out.txt
+cc1err.txt
+cc1out.txt
+cap.dex
+
+# IDE / 本地工具目录
+.idea/
+.lingma/
+.workbuddy/
